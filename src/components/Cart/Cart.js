@@ -9,10 +9,18 @@ import Typography from "@mui/material/Typography"
 import DisplayItems from "./Items"
 import SelectAddress from "./SelectAddress"
 import ConfirmItems from "./ConfirmOrder"
+import { checkLoggedIn } from "../Authorization"
+import { useNavigate } from "react-router-dom"
 
 const steps = ["Items", "Select Address", "Confirm Order"]
 
 export default function Cart() {
+  const navigate = useNavigate()
+  React.useEffect(() => {
+    if (checkLoggedIn() === false) {
+      navigate("/login", { replace: true })
+    }
+  }, [])
   const cartItems = useLocation()
   const { product, quantity } = cartItems.state
   const [activeStep, setActiveStep] = React.useState(0)
@@ -23,8 +31,6 @@ export default function Cart() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
-
-  console.log(product, quantity)
 
   return (
     <Box sx={{ width: "100%", my: 3, px: 3 }}>
@@ -42,9 +48,7 @@ export default function Cart() {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
+          <Typography sx={{ mt: 2, mb: 1 }}>Order Placed!</Typography>
         </React.Fragment>
       ) : (
         <React.Fragment>
@@ -56,12 +60,11 @@ export default function Cart() {
             )}
             {activeStep === 1 && (
               <div>
-                Step 2 hola <SelectAddress />{" "}
+                <SelectAddress />{" "}
               </div>
             )}
             {activeStep === 2 && (
               <div>
-                Step 3 bonjour{" "}
                 <ConfirmItems productInfo={product} quantity={quantity} />{" "}
               </div>
             )}

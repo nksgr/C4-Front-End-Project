@@ -16,9 +16,6 @@ import {
 } from "@mui/material"
 import { Box } from "@mui/system"
 import { useNavigate } from "react-router-dom"
-// import { userSignUp } from "../../common/service"
-
-// import { useNavigate } from 'react-router-dom';
 
 // main SignUp component
 export default function SignUp() {
@@ -121,7 +118,7 @@ export default function SignUp() {
           lastName: userDetails.lastName,
           contactNumber: userDetails.contactNumber,
         }
-        console.log(params)
+        // console.log(params)
         try {
           const fetchData = async () => {
             const rawResponse = await fetch(
@@ -135,13 +132,13 @@ export default function SignUp() {
                 },
               }
             )
+            const status = await rawResponse.status
             const response = await rawResponse.json()
 
-            console.log(response)
-            if (response.status === 200) {
+            if (status === 200) {
               setErrorMessage({
                 severity: "success",
-                message: response.data.message,
+                message: response.message,
               })
               setOpen(true)
               setUserDetails(initialValue)
@@ -150,7 +147,6 @@ export default function SignUp() {
           }
           fetchData()
         } catch (error) {
-          // console.log(error);
           setErrorMessage({
             severity: "error",
             message: error.response.data.message,

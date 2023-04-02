@@ -46,7 +46,7 @@ export default function ProductDetail() {
         const response = await rawResponse.json()
         if (rawResponse.ok) {
           setProductInfo(response)
-          console.log(productInfo)
+
           return
         } else {
           const error = new Error()

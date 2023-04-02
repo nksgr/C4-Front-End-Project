@@ -2,9 +2,6 @@ import {
   Button,
   Container,
   FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material"
@@ -35,7 +32,6 @@ export default function AddProduct() {
   const changeHandler = (event) => {
     const { name, value } = event.target
     setProductDetails({ ...productDetails, [name]: value })
-    console.log(productDetails, category)
   }
 
   const handleSubmit = (e) => {

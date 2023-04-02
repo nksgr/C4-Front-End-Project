@@ -54,7 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
-export default function Header() {
+export default function Header(props) {
   const [isLoggedIn, setLogin] = useState(false)
   const [role, setRole] = useState(false)
   const navigate = useNavigate()
@@ -72,8 +72,6 @@ export default function Header() {
     setRole(false)
     navigate("/login")
   }
-
-  const handleSearchBar = (input) => {}
 
   useEffect(() => {
     const role =
@@ -131,7 +129,6 @@ export default function Header() {
                     <SearchIcon />
                   </SearchIconWrapper>
                   <StyledInputBase
-                    onChange={(e) => handleSearchBar(e.target.value)}
                     placeholder="Search…"
                     inputProps={{ "aria-label": "search" }}
                   />
@@ -147,12 +144,12 @@ export default function Header() {
               }}
             >
               {!isLoggedIn && (
-                <Link href="\login" color="inherit" sx={{ mx: 2 }}>
+                <Link href="/login" color="inherit" sx={{ mx: 2 }}>
                   Login
                 </Link>
               )}
               {!isLoggedIn && (
-                <Link href="signup" color="inherit" sx={{ mx: 2 }}>
+                <Link href="/signup" color="inherit" sx={{ mx: 2 }}>
                   Sign Up
                 </Link>
               )}

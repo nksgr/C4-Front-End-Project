@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 import Toggle from "./Toggle"
 import ProductsListing from "./ProductsListing"
 import Dropdown from "./DropDown"
-import { checkLoggedIn } from "../../../api calls/Authorization"
+import { checkLoggedIn } from "../../Authorization"
 
-export default function ProductsHome() {
+export default function ProductsHome(props) {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -13,6 +13,8 @@ export default function ProductsHome() {
       navigate("/login", { replace: true })
     }
   }, [])
+
+  const [searchTerm, setSearchTerm] = useState(props.term)
 
   const [allProducts, setAllProducts] = useState([]) // stores all products, api called from db
   const [categories, setCategories] = useState([]) // stores categories, api called from db
@@ -57,19 +59,17 @@ export default function ProductsHome() {
         productsDisplayed = products.sort((b, a) =>
           b.price > a.price ? 1 : a.price > b.price ? -1 : 0
         )
-        console.log("price sorted low to high", productsDisplayed)
 
         break
       case 3:
         productsDisplayed = products.sort((a, b) =>
           b.price > a.price ? 1 : a.price > b.price ? -1 : 0
         )
-        console.log("price sorted high to low", productsDisplayed)
 
         break
       case 4:
         productsDisplayed = products.reverse()
-        console.log("reversed", productsDisplayed)
+
         break
 
       default:

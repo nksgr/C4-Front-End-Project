@@ -12,7 +12,7 @@ import {
 export default function DisplayItem(props) {
   const product = props.productInfo
   const quantity = props.quantity
-  console.log(product)
+
   return (
     <div className="cart-container">
       <Container

@@ -14,7 +14,6 @@ import UpdateProduct from "./components/Products/UpdateProduct/UpdateProduct"
 import Logout from "./components/Logout/Logout"
 import AddProduct from "./components/Products/AddProduct/AddProduct"
 import Signup from "./components/Signup/Signup"
-import SearchProduct from "./Search Product/SearchProduct"
 
 const theme = createTheme({
   palette: {
@@ -35,7 +34,6 @@ function App() {
           <Route path="/products" element={<ProductsHome />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/products/update/:id" element={<UpdateProduct />} />
-          <Route path="/products/search/:term" element={<SearchProduct />} />
           <Route path="/products/add" element={<AddProduct />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/signup" element={<Signup />} />

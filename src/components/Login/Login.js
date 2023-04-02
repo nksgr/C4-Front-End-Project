@@ -12,7 +12,7 @@ import {
 import { Box } from "@mui/system"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import { useNavigate } from "react-router-dom"
-import { checkLoggedIn } from "../../api calls/Authorization"
+import { checkLoggedIn } from "../Authorization"
 
 import "./Login.css"
 function ValidateEmail(mail) {
@@ -43,12 +43,9 @@ export default function Login() {
       const rawResponse = await fetch("http://localhost:8080/api/users", header)
       const status = await rawResponse.status
 
-      // console.log("response status: ", status)
       if (status === 200) {
-        // console.log("Hello ADMIN")
         sessionStorage.setItem("auth-token", window.btoa("ADMIN-ROLE-ONLY"))
       } else if (status === 403) {
-        console.log("Hello USER")
       } else {
         const error = new Error()
         error.message = "Something went wrong"
@@ -63,7 +60,7 @@ export default function Login() {
 
   const loginUser = async (email, password) => {
     const params = { username: email, password: password }
-    console.log(params)
+
     try {
       const rawResponse = await fetch("http://localhost:8080/api/auth/signin", {
         body: JSON.stringify(params),
@@ -77,14 +74,9 @@ export default function Login() {
       const response = await rawResponse.json()
 
       if (rawResponse.ok) {
-        //   console.log(response)
-
-        console.log(response.token)
         sessionStorage.setItem("access-token", response.token)
 
-        sessionStorage.setItem("user-id", response.userid)
-
-        setAccess(response.token, response.userid)
+        setAccess(response.token)
       } else {
         const error = new Error()
         error.message = response.message || "Something went wrong"
@@ -101,7 +93,6 @@ export default function Login() {
   const [password, setPassword] = useState([])
 
   const validateCredentials = (e) => {
-    console.log("fired submit for form", email, password)
     e.preventDefault()
 
     if (password === "" || email === "") {

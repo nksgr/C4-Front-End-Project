@@ -9,8 +9,6 @@ export default function Toggle(props) {
     setAlignment(newAlignment)
   }
   const categorySelected = (value) => {
-    console.log("Clicked category", value)
-
     props.toggleHandler(value)
   }
 

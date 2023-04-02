@@ -2,8 +2,6 @@ import React from "react"
 import ProductCard from "./ProductCard"
 
 export default function ProductsListing(props) {
-  console.log(props)
-
   const renderProductCard = () => {
     let cardToBeRendered =
       props.currentProducts.length === 0

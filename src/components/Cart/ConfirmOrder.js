@@ -78,11 +78,7 @@ export default function ConfirmItems(props) {
               Address Details
             </Typography>
             <div style={{ padding: 6 }}>
-              <Typography variant="body1">Address Line1</Typography>
-              <Typography variant="body1">Address Line2</Typography>
-              <Typography variant="body1">Address Line3</Typography>
-              <Typography variant="body1">Address Line4</Typography>
-              <Typography variant="body1">Address Line5</Typography>
+              <Typography variant="body1">Address Line Place Holder</Typography>
             </div>
           </div>
         </Card>

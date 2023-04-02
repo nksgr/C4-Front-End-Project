@@ -9,11 +9,9 @@ export default function SelectAutoWidth(props) {
 
   const handleChange = (event) => {
     setDropDown(event.target.value)
-    console.log()
   }
 
   const dropdownSelection = (value) => {
-    console.log(value)
     props.dropdownHandler(value)
   }
 
